@@ -95,15 +95,26 @@ database.ref().on("child_added", function(childSnapshot) {
     console.log(minutesTilTrain);
 
     var nextArrival = moment().add(minutesTilTrain, "minutes");
+    var nextArrivalTrain = moment(nextArrival).format("HH:mm");
+    console.log("next arrival ===");
+    console.log(nextArrival);
+    console.log(nextArrivalTrain);
+
     var catchTrain = moment(nextArrival).format("HH:mm");
-  
+
+    // add remove button for each train
+    // var removeTrain = $("<button>");
+    // removeTrain.addClass("checkbox");
+    // removeTrain.text("x");
+
     // Create the new row
     var newRow = $("<tr>").append(
         $("<td>").text(trainName),
         $("<td>").text(trainDestination),
         $("<td>").text(frequency),
-        $("<td>").text(nextArrival),
-        $("<td>").text(minutesTilTrain)
+        $("<td>").text(nextArrivalTrain),
+        $("<td>").text(minutesTilTrain),
+        // $("<td>").text(removeTrain)
     );
   
     // Append the new row to the table
