@@ -4,13 +4,13 @@
 
 .card-header {
     text-align: left;
-    background-color: lightskyblue;;
-    color: black;
+    background-color: rgb(7, 111, 175);;
+    color: white;
     font-weight: bold;
 }
 
 body {
-    background-color: rgb(27, 60, 73);
+    background-color: rgb(93, 207, 252);
 };
 
 #first-col {
