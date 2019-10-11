@@ -50,7 +50,7 @@ $("#add-train-btn").on("click", function(event) {
     $("#frequency-input").val("");
 });
 
-// 3. Create Firebase event for adding trains to the database and a row in the html when a user adds an entry
+// Firebase event for adding trains to the database and a row in the html when a user adds an entry
 database.ref().on("child_added", function(childSnapshot) {
     console.log(childSnapshot.val());
   
@@ -71,20 +71,39 @@ database.ref().on("child_added", function(childSnapshot) {
     // var empStartPretty = moment.unix(empStart).format("MM/DD/YYYY");
   
     // To calculate the next arrival
-    // var nextArrival = 
+    // var nextArrival = "";
     // console.log(nextArrival);
   
     // Calculate minutes away
-    // var minutesAway = ********empMonths * empRate;
-    // console.log(minutesAway);
+    var convertedTrainTime = moment(trainFirst, "hh:mm").subtract(1, "years");
+    console.log("converted train time ====")
+    console.log(convertedTrainTime);
+
+    var currentTime = moment();
+    console.log("current time ===");
+    console.log(currentTime);
+
+    var minutesAway = moment().diff(moment(convertedTrainTime), "minutes");
+    console.log("minutes away ===");
+    console.log(moment().format("HH:mm"));
+    console.log(minutesAway);
+
+    var tRemainder = minutesAway % frequency;
+    console.log(tRemainder);
+
+    var minutesTilTrain = frequency - tRemainder;
+    console.log(minutesTilTrain);
+
+    var nextArrival = moment().add(minutesTilTrain, "minutes");
+    var catchTrain = moment(nextArrival).format("HH:mm");
   
     // Create the new row
     var newRow = $("<tr>").append(
-      $("<td>").text(trainName),
-      $("<td>").text(trainDestination),
-      $("<td>").text(frequency),
-    //   $("<td>").text(nextArrival),
-    //   $("<td>").text(minutesAway)
+        $("<td>").text(trainName),
+        $("<td>").text(trainDestination),
+        $("<td>").text(frequency),
+        $("<td>").text(nextArrival),
+        $("<td>").text(minutesTilTrain)
     );
   
     // Append the new row to the table
