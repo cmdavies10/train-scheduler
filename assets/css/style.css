@@ -1,7 +1,18 @@
-.table {
-    text-align: center;
+.card {
+    text-align: left;
 }
 
-#trains-display {
-    text-align: center;
+.card-header {
+    text-align: left;
+    background-color: lightskyblue;;
+    color: black;
+    font-weight: bold;
+}
+
+body {
+    background-color: rgb(27, 60, 73);
+};
+
+#first-col {
+    text-align: left;
 }

@@ -13,7 +13,7 @@ firebase.initializeApp(firebaseConfig);
   
 var database = firebase.database();
 
-// 2. Button for adding trains
+// click event for adding trains
 $("#add-train-btn").on("click", function(event) {
     event.preventDefault();
 
@@ -66,15 +66,9 @@ database.ref().on("child_added", function(childSnapshot) {
     console.log(trainDestination);
     console.log(trainFirst);
     console.log(frequency);
+
   
-    // Prettify the first train time
-    // var empStartPretty = moment.unix(empStart).format("MM/DD/YYYY");
-  
-    // To calculate the next arrival
-    // var nextArrival = "";
-    // console.log(nextArrival);
-  
-    // Calculate minutes away
+    // Calculate minutes away and next arrival
     var convertedTrainTime = moment(trainFirst, "hh:mm").subtract(1, "years");
     console.log("converted train time ====")
     console.log(convertedTrainTime);
